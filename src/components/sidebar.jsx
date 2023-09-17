@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const sidebar = () => {
+const sidebar = ({ darkMode, toggleDarkMode }) => {
   return (
     <div>
       <button
@@ -26,7 +26,6 @@ const sidebar = () => {
           ></path>
         </svg>
       </button>
-
       <aside
         id="cta-button-sidebar"
         className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
@@ -213,6 +212,18 @@ const sidebar = () => {
               Turn new navigation off
             </a>
           </div>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              onChange={toggleDarkMode}
+              type="checkbox"
+              checked={darkMode}
+              className="sr-only peer"
+            />
+            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+            <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+              Toggle me
+            </span>
+          </label>{" "}
         </div>
       </aside>
     </div>
