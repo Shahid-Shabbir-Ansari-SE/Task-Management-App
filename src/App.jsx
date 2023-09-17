@@ -10,8 +10,10 @@ function App() {
       <div>
         <div className="w-full m-0 p-0">
           <div className="flex">
+            <div className="w-[255px] h-screen">
             <Sidebar />
-            <div className="flex-grow">
+            </div>
+            <div className="w-[calc(100vw-255px)] h-screen">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/roadmap" element={<Roadmap />} />
