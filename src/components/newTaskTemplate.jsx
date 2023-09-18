@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 
-const newTaskTemplate = ({ newTask, toggleNewTask, handleSubmitTask, handleTaskNameChange}) => {
+const newTaskTemplate = ({ newTask, toggleNewTask, handleSubmitTask, handleTaskNameChange,handleTaskDescriptionChange}) => {
   
   return (
     <div className="h-screen flex items-center fixed w-[calc(100vw-255px)]">
-      <div className="z-50 w-96 mx-auto p-7 grid shadow-2xl border-2 border-gray-200 rounded-lg dark:border-gray-700 dark:shadow-black relative">
+      <div className="z-50 dark:bg-[#222327] bg-white w-96 mx-auto p-7 grid shadow-2xl border-2 border-gray-200 rounded-lg dark:border-gray-700 dark:shadow-black relative">
         <AiFillCloseCircle
           className="absolute top-0 right-0 mr-5 mt-5 fill-red-700 text-xl cursor-pointer"
           onClick={toggleNewTask}
@@ -36,6 +36,7 @@ const newTaskTemplate = ({ newTask, toggleNewTask, handleSubmitTask, handleTaskN
           <textarea
             id="message"
             rows="4"
+            onChange={handleTaskDescriptionChange}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Briefly describe the task's objective or what needs to be done..."
           ></textarea>

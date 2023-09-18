@@ -3,10 +3,18 @@ import NewTaskTemplate from "../components/newTaskTemplate";
 import { AiOutlinePlus } from "react-icons/ai";
 
 const home = () => {
-  const [newTask, setNewTask] = useState(true);
+  const [newTask, setNewTask] = useState(false);
   const [taskName, setTaskName] = useState("");
+  const [taskdescription, setTaskDescription] = useState("");
   const [storedTaskName, setStoredTaskName] = useState("");
-  const [taskList, setTaskList] = useState([]);
+  const [storedTaskDescription, setStoredTaskDescription] = useState("");
+  const [taskList, setTaskList] = useState(
+    JSON.parse(localStorage.getItem("taskList")) || []
+  );
+
+  const [taskdescriptionList, setTaskDescriptionList] = useState(
+    JSON.parse(localStorage.getItem("taskDescriptionList")) || []
+  );
 
   const toggleNewTask = () => {
     setNewTask(!newTask);
@@ -14,16 +22,34 @@ const home = () => {
   const handleTaskNameChange = (e) => {
     setStoredTaskName(e.target.value);
   };
+
+  const handleTaskDescriptionChange = (e) => {
+    setStoredTaskDescription(e.target.value);
+  };
+
   const handleSubmitTask = () => {
-    if (storedTaskName === "") {
+    if (storedTaskName === "" || storedTaskDescription === "") {
       alert("Please fill the form");
     } else {
       setTaskName(storedTaskName);
+      setTaskDescription(storedTaskDescription);
+
+      // Update the state
+      setTaskList([...taskList, storedTaskName]);
+      setTaskDescriptionList([...taskdescriptionList, storedTaskDescription]);
+
+      // Update localStorage
       localStorage.setItem(
         "taskList",
         JSON.stringify([...taskList, storedTaskName])
       );
+      localStorage.setItem(
+        "taskDescriptionList",
+        JSON.stringify([...taskdescriptionList, storedTaskDescription])
+      );
+
       setStoredTaskName("");
+      setStoredTaskDescription("");
       toggleNewTask();
     }
   };
@@ -31,6 +57,13 @@ const home = () => {
   useEffect(() => {
     if (localStorage.getItem("taskList")) {
       setTaskList(JSON.parse(localStorage.getItem("taskList")));
+    }
+  }, []);
+  useEffect(() => {
+    if (localStorage.getItem("taskDescriptionList")) {
+      setTaskDescriptionList(
+        JSON.parse(localStorage.getItem("taskDescriptionList"))
+      );
     }
   }, []);
   return (
@@ -43,6 +76,7 @@ const home = () => {
               toggleNewTask={toggleNewTask}
               handleSubmitTask={handleSubmitTask}
               handleTaskNameChange={handleTaskNameChange}
+              handleTaskDescriptionChange={handleTaskDescriptionChange}
             />
           )}
         </div>
@@ -54,11 +88,17 @@ const home = () => {
           <AiOutlinePlus className="mr-2" />
           Add Task
         </button>
-        <ul>
+        <div className="grid-container">
           {taskList.map((task, index) => (
-            <li key={index}>{task}</li>
+            <div key={index} className="grid-item">
+              <div className="task-name">{task}</div>
+              <div className="task-description">
+                {taskdescriptionList[index]}
+              </div>
+            </div>
           ))}
-        </ul>
+          
+        </div>
       </div>
     </div>
   );
