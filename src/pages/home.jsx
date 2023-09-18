@@ -66,6 +66,27 @@ const home = () => {
       );
     }
   }, []);
+
+  const handleDeleteAllTasks = () => {
+    localStorage.clear();
+    setTaskList([]);
+    setTaskDescriptionList([]);
+  }
+  const handleDeleteTask = (index) => {
+    const newTaskList = [...taskList];
+    newTaskList.splice(index, 1);
+    setTaskList(newTaskList);
+    localStorage.setItem("taskList", JSON.stringify(newTaskList));
+
+    const newTaskDescriptionList = [...taskdescriptionList];
+    newTaskDescriptionList.splice(index, 1);
+    setTaskDescriptionList(newTaskDescriptionList);
+    localStorage.setItem(
+      "taskDescriptionList",
+      JSON.stringify(newTaskDescriptionList)
+    );
+  }
+
   return (
     <div className="">
       <div>
@@ -95,9 +116,10 @@ const home = () => {
               <div className="task-description">
                 {taskdescriptionList[index]}
               </div>
+              <button onClick={() => handleDeleteTask(index)}>Delete</button>
             </div>
           ))}
-          
+          <button onClick={handleDeleteAllTasks}>Delete All Tasks</button>
         </div>
       </div>
     </div>
