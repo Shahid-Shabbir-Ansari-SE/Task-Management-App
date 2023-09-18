@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className={darkMode ? "dark" : ""}>
-        <div className="w-full m-0 p-0 dark:bg-black dark:">
+        <div className="w-full m-0 p-0 dark:bg-[#222327]">
           <div className="flex">
             <div className="w-[255px] h-screen">
               <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
