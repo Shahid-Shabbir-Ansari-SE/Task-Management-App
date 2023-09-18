@@ -3,30 +3,46 @@ import NewTaskTemplate from "../components/newTaskTemplate";
 import { AiOutlinePlus } from "react-icons/ai";
 
 const home = () => {
+  // Toggle new task form
   const [newTask, setNewTask] = useState(false);
+  // Current task name
   const [taskName, setTaskName] = useState("");
+  // Current task description
   const [taskdescription, setTaskDescription] = useState("");
+  // Store new task name
   const [storedTaskName, setStoredTaskName] = useState("");
+  // Store new task description
   const [storedTaskDescription, setStoredTaskDescription] = useState("");
+  // Array of tasks
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("taskList")) || []
   );
-
+  // Array of task descriptions
   const [taskdescriptionList, setTaskDescriptionList] = useState(
     JSON.parse(localStorage.getItem("taskDescriptionList")) || []
   );
+  // Toggle edit mode for tasks
+  const [editState, setEditState] = useState(false);
 
+  // *Function to toggle the new task form
   const toggleNewTask = () => {
     setNewTask(!newTask);
+    if (newTask) {
+      setEditState(false);
+    }
   };
+
+  // *Function to handle changes in the new task name input field
   const handleTaskNameChange = (e) => {
     setStoredTaskName(e.target.value);
   };
 
+  // *Function to handle changes in the new task description input field
   const handleTaskDescriptionChange = (e) => {
     setStoredTaskDescription(e.target.value);
   };
 
+  // Todo: Function to handle the submission of a new task
   const handleSubmitTask = () => {
     if (storedTaskName === "" || storedTaskDescription === "") {
       alert("Please fill the form");
@@ -34,11 +50,11 @@ const home = () => {
       setTaskName(storedTaskName);
       setTaskDescription(storedTaskDescription);
 
-      // Update the state
+      // Update the state with the new task and description
       setTaskList([...taskList, storedTaskName]);
       setTaskDescriptionList([...taskdescriptionList, storedTaskDescription]);
 
-      // Update localStorage
+      // Update localStorage with the new task and description
       localStorage.setItem(
         "taskList",
         JSON.stringify([...taskList, storedTaskName])
@@ -54,11 +70,14 @@ const home = () => {
     }
   };
 
+  // *Load tasks from local storage when the component mounts
   useEffect(() => {
     if (localStorage.getItem("taskList")) {
       setTaskList(JSON.parse(localStorage.getItem("taskList")));
     }
   }, []);
+
+  // *Load task descriptions from local storage when the component mounts
   useEffect(() => {
     if (localStorage.getItem("taskDescriptionList")) {
       setTaskDescriptionList(
@@ -67,11 +86,14 @@ const home = () => {
     }
   }, []);
 
+  // !Function to handle deleting all tasks
   const handleDeleteAllTasks = () => {
-    localStorage.clear();
-    setTaskList([]);
-    setTaskDescriptionList([]);
-  }
+    localStorage.clear(); // Clear all data from local storage
+    setTaskList([]); // Clear the task list state
+    setTaskDescriptionList([]); // Clear the task description list state
+  };
+
+  // !Function to handle deleting a specific task
   const handleDeleteTask = (index) => {
     const newTaskList = [...taskList];
     newTaskList.splice(index, 1);
@@ -85,7 +107,13 @@ const home = () => {
       "taskDescriptionList",
       JSON.stringify(newTaskDescriptionList)
     );
-  }
+  };
+
+  // *Function to handle editing a specific task
+  const handleEditTask = (index) => {
+    setEditState(!editState); // Toggle the edit mode
+    toggleNewTask(); // Close the new task form
+  };
 
   return (
     <div className="">
@@ -98,6 +126,7 @@ const home = () => {
               handleSubmitTask={handleSubmitTask}
               handleTaskNameChange={handleTaskNameChange}
               handleTaskDescriptionChange={handleTaskDescriptionChange}
+              editState={editState}
             />
           )}
         </div>
@@ -116,6 +145,7 @@ const home = () => {
               <div className="task-description">
                 {taskdescriptionList[index]}
               </div>
+              <button onClick={() => handleEditTask(index)}>Edit</button>
               <button onClick={() => handleDeleteTask(index)}>Delete</button>
             </div>
           ))}

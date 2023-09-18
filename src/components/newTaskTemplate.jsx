@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
-
-const newTaskTemplate = ({ newTask, toggleNewTask, handleSubmitTask, handleTaskNameChange,handleTaskDescriptionChange}) => {
-  
+const newTaskTemplate = ({
+  toggleNewTask,
+  handleSubmitTask,
+  handleTaskNameChange,
+  handleTaskDescriptionChange,
+  editState,
+}) => {
   return (
     <div className="h-screen flex items-center fixed w-[calc(100vw-255px)]">
       <div className="z-50 dark:bg-[#222327] bg-white w-96 mx-auto p-7 grid shadow-2xl border-2 border-gray-200 rounded-lg dark:border-gray-700 dark:shadow-black relative">
@@ -59,13 +63,23 @@ const newTaskTemplate = ({ newTask, toggleNewTask, handleSubmitTask, handleTaskN
           </select>
         </div>
 
-        <button
-          type="button"
-          onClick={handleSubmitTask}
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 text-center py-2.5 mt-2 mx-20 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        >
-          Default
-        </button>
+        {editState ? (
+          <button
+            type="button"
+            onClick={handleSubmitTask}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 text-center py-2.5 mt-2 mx-16 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
+            Update Task
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={handleSubmitTask}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 text-center py-2.5 mt-2 mx-20 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
+            Add Task
+          </button>
+        )}
       </div>
     </div>
   );
