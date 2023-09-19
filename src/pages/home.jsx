@@ -13,7 +13,7 @@ const home = () => {
   const [storedTaskName, setStoredTaskName] = useState("");
   // Store new task description
   const [storedTaskDescription, setStoredTaskDescription] = useState("");
-  // Array of tasks
+  // Array of taskskanban-task-management-react-tailwind.vercel.app
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("taskList")) || []
   );
@@ -143,9 +143,9 @@ const home = () => {
   };
 
   return (
-    <div className="">
-      <div>
-        <div className="">
+    <div className="lg:m-5 md:m-5 m-3">
+      <div className="">
+        <div className="lg:-mx-5 md:-mx-5 -mx-3">
           {newTask && (
             <NewTaskTemplate
               newTask={newTask}
@@ -161,7 +161,7 @@ const home = () => {
         </div>
         <button
           type="button"
-          className="flex items-center text-gray-900 bg-white border border-[#1C1D22] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-1.5 mr-2 mb-2 dark:bg-[#1C1D22] dark:text-white dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+          className="flex items-center text-gray-900 bg-white border border-[#1C1D22] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-[#1C1D22] dark:text-white dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           onClick={toggleNewTask}
         >
           <AiOutlinePlus className="mr-2" />
@@ -170,7 +170,7 @@ const home = () => {
         <div className="grid-container">
           {taskList.map((task, index) => (
             <div key={index} className="grid-item">
-              <div className="task-name">{task}</div>
+              <div className="task-name dark:text-white text-3xl">{task}</div>
               <div className="task-description">
                 {taskdescriptionList[index]}
               </div>

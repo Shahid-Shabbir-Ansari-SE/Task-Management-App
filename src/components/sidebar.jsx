@@ -1,33 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BsSunFill,BsMoonStarsFill } from "react-icons/bs";
+import { BsSunFill, BsMoonStarsFill } from "react-icons/bs";
 const sidebar = ({ darkMode, toggleDarkMode }) => {
   return (
     <div>
-      <button
-        data-drawer-target="cta-button-sidebar"
-        data-drawer-toggle="cta-button-sidebar"
-        aria-controls="cta-button-sidebar"
-        type="button"
-        className="flex items-center p-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <span className="sr-only">Open sidebar</span>
-        <svg
-          className="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
+      <div className="flex items-center">
+        <button
+          type="button"
+          className="flex items-center p-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
-          <path
-            clipRule="evenodd"
-            fillRule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
-        </svg><h1 className="text-[21px] font-Poppins mx-3 text-gray-600">OrganizeMeNow</h1>
-      </button>
+          <span className="sr-only">Open sidebar</span>
+          <svg
+            className="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              fillRule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+            ></path>
+          </svg>
+        </button>
+      <h1 className="text-[21px] font-Poppins mx -3 text-gray-600 dark:text-white">
+        OrganizeMeNow
+      </h1>
+      </div>
       <aside
-        id="cta-button-sidebar"
         className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
@@ -213,7 +214,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             </a>
           </div>
           <div className="flex gap-3 items-center justify-center lg:pt-5">
-              <BsSunFill className="text-2xl dark:text-white"/>
+            <BsSunFill className="text-2xl dark:text-white" />
             <label className="relative inline-flex items-center cursor-pointer">
               <input
                 onChange={toggleDarkMode}
@@ -222,7 +223,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
                 className="sr-only peer"
               />
               <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                <BsMoonStarsFill className="ml-3 text-xl dark:text-white"/>
+              <BsMoonStarsFill className="ml-3 text-xl dark:text-white" />
             </label>
           </div>
         </div>

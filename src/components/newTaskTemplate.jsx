@@ -10,8 +10,8 @@ const newTaskTemplate = ({
   index,
 }) => {
   return (
-    <div className="h-screen flex items-center fixed lg:w-[calc(100vw-255px)] md:w-[calc(100vw-255px)] w-full">
-      <div className="z-50 dark:bg-[#222327] bg-white lg:w-96 mx-auto p-7 grid shadow-2xl border-2 border-gray-200 rounded-lg dark:border-gray-700 dark:shadow-black relative md:w-96 sm:w-auto">
+    <div className="h-screen flex items-center fixed lg:w-[calc(100vw-255px)] md:w-[calc(100vw-255px)] w-full lg:-my-5 md:-my-5 -my-3">
+      <div className="z-50 dark:bg-[#222327] bg-white lg:w-96 mx-auto p-7 grid shadow-2xl border-2 border-gray-200 rounded-lg dark:border-gray-700 dark:shadow-black relative md:w-96">
         <AiFillCloseCircle
           className="absolute top-0 right-0 mr-5 mt-5 fill-red-700 text-xl cursor-pointer"
           onClick={toggleNewTask}
