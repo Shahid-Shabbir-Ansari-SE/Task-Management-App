@@ -6,6 +6,8 @@ const newTaskTemplate = ({
   handleTaskNameChange,
   handleTaskDescriptionChange,
   editState,
+  handleUpdateTask,
+  index,
 }) => {
   return (
     <div className="h-screen flex items-center fixed w-[calc(100vw-255px)]">
@@ -66,7 +68,7 @@ const newTaskTemplate = ({
         {editState ? (
           <button
             type="button"
-            onClick={handleSubmitTask}
+            onClick={(() => handleUpdateTask(index))}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 text-center py-2.5 mt-2 mx-16 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
             Update Task

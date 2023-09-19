@@ -23,6 +23,8 @@ const home = () => {
   );
   // Toggle edit mode for tasks
   const [editState, setEditState] = useState(false);
+  // Index of the task to be edited
+  const [editIndex, setEditIndex] = useState(null);
 
   // *Function to toggle the new task form
   const toggleNewTask = () => {
@@ -112,7 +114,32 @@ const home = () => {
   // *Function to handle editing a specific task
   const handleEditTask = (index) => {
     setEditState(!editState); // Toggle the edit mode
+    setEditIndex(index); // Set the index of the task to be edited
     toggleNewTask(); // Close the new task form
+  };
+
+  // *Function to handle updating a specific task
+  const handleUpdateTask = (index) => {
+    setEditIndex(index); // Set the index of the task to be edited
+    if (storedTaskName === "" || storedTaskDescription === "") {
+      alert("Please fill the form");
+    } else {
+      const newTaskList = [...taskList];
+      newTaskList[index] = storedTaskName;
+      const newTaskDescriptionList = [...taskdescriptionList];
+      newTaskDescriptionList[index] = storedTaskDescription;
+      setTaskList(newTaskList);
+      setTaskDescriptionList(newTaskDescriptionList);
+      localStorage.setItem("taskList", JSON.stringify(newTaskList));
+      localStorage.setItem(
+        "taskDescriptionList",
+        JSON.stringify(newTaskDescriptionList)
+      );
+      setEditState(!editState); // Toggle the edit mode
+      setStoredTaskName("");
+      setStoredTaskDescription("");
+      toggleNewTask();
+    }
   };
 
   return (
@@ -127,6 +154,8 @@ const home = () => {
               handleTaskNameChange={handleTaskNameChange}
               handleTaskDescriptionChange={handleTaskDescriptionChange}
               editState={editState}
+              handleUpdateTask={handleUpdateTask}
+              index={editIndex}
             />
           )}
         </div>
