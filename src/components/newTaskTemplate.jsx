@@ -10,8 +10,8 @@ const newTaskTemplate = ({
   index,
 }) => {
   return (
-    <div className="h-screen flex items-center fixed w-[calc(100vw-255px)]">
-      <div className="z-50 dark:bg-[#222327] bg-white w-96 mx-auto p-7 grid shadow-2xl border-2 border-gray-200 rounded-lg dark:border-gray-700 dark:shadow-black relative">
+    <div className="h-screen flex items-center fixed lg:w-[calc(100vw-255px)] md:w-[calc(100vw-255px)] w-full">
+      <div className="z-50 dark:bg-[#222327] bg-white lg:w-96 mx-auto p-7 grid shadow-2xl border-2 border-gray-200 rounded-lg dark:border-gray-700 dark:shadow-black relative md:w-96 sm:w-auto">
         <AiFillCloseCircle
           className="absolute top-0 right-0 mr-5 mt-5 fill-red-700 text-xl cursor-pointer"
           onClick={toggleNewTask}
@@ -19,7 +19,7 @@ const newTaskTemplate = ({
         <div className="py-2">
           <label
             htmlFor="first_name"
-            className="block my-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block lg:my-2 text-sm font-medium text-gray-900 dark:text-white"
           >
             Task Name
           </label>
@@ -69,7 +69,7 @@ const newTaskTemplate = ({
           <button
             type="button"
             onClick={(() => handleUpdateTask(index))}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 text-center py-2.5 mt-2 mx-16 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm lg:px-12 text-center py-2.5 mt-2 lg:mx-16 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
             Update Task
           </button>
@@ -77,7 +77,7 @@ const newTaskTemplate = ({
           <button
             type="button"
             onClick={handleSubmitTask}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 text-center py-2.5 mt-2 mx-20 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm lg:px-12 text-center py-2.5 mt-2 lg:mx-20 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
             Add Task
           </button>

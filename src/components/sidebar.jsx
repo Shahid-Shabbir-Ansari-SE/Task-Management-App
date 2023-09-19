@@ -9,7 +9,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
         data-drawer-toggle="cta-button-sidebar"
         aria-controls="cta-button-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="flex items-center p-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -24,7 +24,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             fillRule="evenodd"
             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
           ></path>
-        </svg>
+        </svg><h1 className="text-[21px] font-Poppins mx-3 text-gray-600">OrganizeMeNow</h1>
       </button>
       <aside
         id="cta-button-sidebar"
@@ -170,7 +170,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
           </ul>
           <div
             id="dropdown-cta"
-            className="p-4 mt-6 rounded-lg bg-blue-50 dark:bg-blue-900"
+            className="p-4 mt-3 rounded-lg bg-blue-50 dark:bg-blue-900"
             role="alert"
           >
             <div className="flex items-center mb-3">
@@ -212,7 +212,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
               Turn new navigation off
             </a>
           </div>
-          <div className="flex gap-3 items-center justify-center pt-10">
+          <div className="flex gap-3 items-center justify-center lg:pt-5">
               <BsSunFill className="text-2xl dark:text-white"/>
             <label className="relative inline-flex items-center cursor-pointer">
               <input

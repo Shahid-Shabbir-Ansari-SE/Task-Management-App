@@ -4,7 +4,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 const home = () => {
   // Toggle new task form
-  const [newTask, setNewTask] = useState(false);
+  const [newTask, setNewTask] = useState(true);
   // Current task name
   const [taskName, setTaskName] = useState("");
   // Current task description

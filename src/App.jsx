@@ -18,12 +18,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className={darkMode ? "dark" : ""}>
-        <div className="w-full m-0 p-0 dark:bg-[#222327]">
-          <div className="flex">
-            <div className="w-[255px] h-screen">
+        <div className="w-full dark:bg-[#222327] ">
+          <div className="lg:flex md:flex sm:grid">
+            <div className="lg:w-[255px] lg:h-screen lg:shadow-none md:w-[255px] md:shadow-none w-full sticky top-0 bg-white shadow-md">
               <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
             </div>
-            <div className="w-[calc(100vw-255px)] h-screen">
+            <div className="lg:w-[calc(100vw-255px)] md:w-[calc(100vw-255px)] sm:w-full h-screen lg:p-5">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/roadmap" element={<Roadmap />} />
