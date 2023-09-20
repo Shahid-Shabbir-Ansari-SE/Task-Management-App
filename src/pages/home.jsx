@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import NewTaskTemplate from "../components/newTaskTemplate";
 import { AiOutlinePlus } from "react-icons/ai";
+import { FiEdit3 } from "react-icons/fi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const home = () => {
   // Toggle new task form
-  const [newTask, setNewTask] = useState(true);
+  const [newTask, setNewTask] = useState(false);
   // Current task name
   const [taskName, setTaskName] = useState("");
   // Current task description
@@ -121,13 +123,21 @@ const home = () => {
   // *Function to handle updating a specific task
   const handleUpdateTask = (index) => {
     setEditIndex(index); // Set the index of the task to be edited
-    if (storedTaskName === "" || storedTaskDescription === "") {
-      alert("Please fill the form");
+    if (storedTaskName === "" && storedTaskDescription === "") {
+      alert("Please Edit Something");
     } else {
       const newTaskList = [...taskList];
-      newTaskList[index] = storedTaskName;
+      if (storedTaskName === "") {
+        setStoredTaskName(taskList[index]);
+      } else {
+        newTaskList[index] = storedTaskName;
+      }
       const newTaskDescriptionList = [...taskdescriptionList];
-      newTaskDescriptionList[index] = storedTaskDescription;
+      if (storedTaskDescription === "") {
+        setStoredTaskDescription(taskdescriptionList[index]);
+      } else {
+        newTaskDescriptionList[index] = storedTaskDescription;
+      }
       setTaskList(newTaskList);
       setTaskDescriptionList(newTaskDescriptionList);
       localStorage.setItem("taskList", JSON.stringify(newTaskList));
@@ -159,26 +169,69 @@ const home = () => {
             />
           )}
         </div>
-        <button
-          type="button"
-          className="flex items-center text-gray-900 bg-white border border-[#1C1D22] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-[#1C1D22] dark:text-white dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          onClick={toggleNewTask}
-        >
-          <AiOutlinePlus className="mr-2" />
-          Add Task
-        </button>
-        <div className="grid-container">
+        <div className="lg:flex place-items-center">
+          <h1 className="text-xl lg:text-3xl text-black dark:text-white text-center lg:text-left md:text-left w-full">
+            Welcome Back Shahid Shabbir !
+          </h1>
+          <div className="flex gap-2 lg:justify-end lg:m-0 my-2 justify-center w-full">
+            <button
+              type="button"
+              className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none
+            focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 text-center inline-flex items-center
+            dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white"
+              onClick={toggleNewTask}
+            >
+              <AiOutlinePlus className="mr-2" />
+              Add Task
+            </button>
+            <button
+              className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none
+            focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 text-center inline-flex items-center
+            dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white"
+              onClick={handleDeleteAllTasks}
+            >
+              <RiDeleteBin6Line className="mr-2" />
+              Delete All Tasks
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-wrap">
           {taskList.map((task, index) => (
-            <div key={index} className="grid-item">
-              <div className="task-name dark:text-white text-3xl">{task}</div>
-              <div className="task-description">
+            <div
+              key={index}
+              className="basis-auto lg:basis-[47%] border-2 border-gray-400 p-5 my-3 lg:mx-3 rounded-xl"
+            >
+              <h1 className="text-base text-left rounded text-black dark:border border-black bg-white w-fit dark:px-3 my-2">
+                Task n.o {index + 1}
+              </h1>
+              <div className="task-name dark:text-white text-3xl text-black underline">
+                {task}
+              </div>
+              <div className="task-description dark:text-white py-2 dark:font-light">
                 {taskdescriptionList[index]}
               </div>
-              <button onClick={() => handleEditTask(index)}>Edit</button>
-              <button onClick={() => handleDeleteTask(index)}>Delete</button>
+              <div className="justify-end flex">
+                <button
+                  onClick={() => handleEditTask(index)}
+                  className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none
+                   focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+                   dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white"
+                >
+                  <FiEdit3 className="mr-2" />
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDeleteTask(index)}
+                  className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none
+                   focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center
+                   dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white"
+                >
+                  <RiDeleteBin6Line className="mr-2" />
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
-          <button onClick={handleDeleteAllTasks}>Delete All Tasks</button>
         </div>
       </div>
     </div>
