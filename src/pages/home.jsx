@@ -170,8 +170,8 @@ const home = () => {
           )}
         </div>
         <div className="lg:flex place-items-center">
-          <h1 className="text-xl lg:text-3xl text-black dark:text-white text-center lg:text-left md:text-left w-full">
-            Welcome Back Shahid Shabbir !
+          <h1 className="text-xl lg:text-3xl text-black dark:text-white text-center lg:text-left md:text-center w-full">
+            Welcome Back Again !
           </h1>
           <div className="flex gap-2 lg:justify-end lg:m-0 my-2 justify-center w-full">
             <button
