@@ -8,6 +8,8 @@ const newTaskTemplate = ({
   editState,
   handleUpdateTask,
   index,
+  priorityFilter,
+  handlePriorityFilter,
 }) => {
   return (
     <div className="h-screen flex items-center fixed lg:w-[calc(100vw-255px)] md:w-[calc(100vw-255px)] w-full lg:-my-5 md:-my-5 -my-3">
@@ -56,6 +58,8 @@ const newTaskTemplate = ({
           </label>
           <select
             id="countries"
+            defaultValue={priorityFilter}
+            onChange={handlePriorityFilter}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option>All</option>
@@ -68,7 +72,7 @@ const newTaskTemplate = ({
         {editState ? (
           <button
             type="button"
-            onClick={(() => handleUpdateTask(index))}
+            onClick={() => handleUpdateTask(index)}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm lg:px-12 text-center py-2.5 mt-2 lg:mx-16 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >
             Update Task

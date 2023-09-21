@@ -11,17 +11,25 @@ const home = () => {
   const [taskName, setTaskName] = useState("");
   // Current task description
   const [taskdescription, setTaskDescription] = useState("");
+  // Current task priority
+  const [priorityFilter, setPriorityFilter] = useState("all");
   // Store new task name
   const [storedTaskName, setStoredTaskName] = useState("");
   // Store new task description
   const [storedTaskDescription, setStoredTaskDescription] = useState("");
-  // Array of taskskanban-task-management-react-tailwind.vercel.app
+  // Store new task priority
+  const [storedPriorityFilter, setStoredPriorityFilter] = useState("");
+  // Array of tasks
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("taskList")) || []
   );
   // Array of task descriptions
   const [taskdescriptionList, setTaskDescriptionList] = useState(
     JSON.parse(localStorage.getItem("taskDescriptionList")) || []
+  );
+  // Array of task priorities
+  const [taskPriorityList, setTaskPriorityList] = useState(
+    JSON.parse(localStorage.getItem("taskPriorityList")) || []
   );
   // Toggle edit mode for tasks
   const [editState, setEditState] = useState(false);
@@ -53,10 +61,12 @@ const home = () => {
     } else {
       setTaskName(storedTaskName);
       setTaskDescription(storedTaskDescription);
+      setPriorityFilter(storedPriorityFilter);
 
       // Update the state with the new task and description
       setTaskList([...taskList, storedTaskName]);
       setTaskDescriptionList([...taskdescriptionList, storedTaskDescription]);
+      setTaskPriorityList([...taskPriorityList, storedPriorityFilter]);
 
       // Update localStorage with the new task and description
       localStorage.setItem(
@@ -67,9 +77,14 @@ const home = () => {
         "taskDescriptionList",
         JSON.stringify([...taskdescriptionList, storedTaskDescription])
       );
+      localStorage.setItem(
+        "taskPriorityList",
+        JSON.stringify([...taskPriorityList, storedPriorityFilter])
+      );
 
       setStoredTaskName("");
       setStoredTaskDescription("");
+      setStoredPriorityFilter("All");
       toggleNewTask();
     }
   };
@@ -86,6 +101,15 @@ const home = () => {
     if (localStorage.getItem("taskDescriptionList")) {
       setTaskDescriptionList(
         JSON.parse(localStorage.getItem("taskDescriptionList"))
+      );
+    }
+  }, []);
+
+  // *Load task priorities from local storage when the component mounts
+  useEffect(() => {
+    if (localStorage.getItem("taskPriorityList")) {
+      setTaskPriorityList(
+        JSON.parse(localStorage.getItem("taskPriorityList"))
       );
     }
   }, []);
@@ -138,12 +162,23 @@ const home = () => {
       } else {
         newTaskDescriptionList[index] = storedTaskDescription;
       }
+      const newTaskPriorityList = [...taskPriorityList];
+      if (storedPriorityFilter === "") {
+        setStoredPriorityFilter(taskPriorityList[index]);
+      } else {
+        newTaskPriorityList[index] = storedPriorityFilter;
+      }
       setTaskList(newTaskList);
       setTaskDescriptionList(newTaskDescriptionList);
+      setTaskPriorityList(newTaskPriorityList);
       localStorage.setItem("taskList", JSON.stringify(newTaskList));
       localStorage.setItem(
         "taskDescriptionList",
         JSON.stringify(newTaskDescriptionList)
+      );
+      localStorage.setItem(
+        "taskPriorityList",
+        JSON.stringify(newTaskPriorityList)
       );
       setEditState(!editState); // Toggle the edit mode
       setStoredTaskName("");
@@ -152,8 +187,12 @@ const home = () => {
     }
   };
 
+  const handlePriorityFilter = (e) => {
+    setPriorityFilter(e.target.value); // Update the priorityFilter state
+  };  
+
   return (
-    <div className="lg:m-5 md:m-5 m-3">
+    <div className="lg:m-5 md:m-5 mx-3">
       <div className="">
         <div className="lg:-mx-5 md:-mx-5 -mx-3">
           {newTask && (
@@ -166,7 +205,7 @@ const home = () => {
               editState={editState}
               handleUpdateTask={handleUpdateTask}
               index={editIndex}
-            />
+              priorityFilter={priorityFilter}            />
           )}
         </div>
         <div className="lg:flex place-items-center">
@@ -199,7 +238,7 @@ const home = () => {
           {taskList.map((task, index) => (
             <div
               key={index}
-              className="basis-auto lg:basis-[47%] border-2 border-gray-400 p-5 my-3 lg:mx-3 rounded-xl"
+              className="basis-auto lg:basis-[47%] border-2 border-gray-400 p-5 my-3 lg:mx-3 rounded-xl w-full"
             >
               <h1 className="text-base text-left rounded text-black dark:border border-black bg-white w-fit dark:px-3 my-2">
                 Task n.o {index + 1}
@@ -209,6 +248,9 @@ const home = () => {
               </div>
               <div className="task-description dark:text-white py-2 dark:font-light">
                 {taskdescriptionList[index]}
+              </div>
+              <div>
+                {taskPriorityList}
               </div>
               <div className="justify-end flex">
                 <button
