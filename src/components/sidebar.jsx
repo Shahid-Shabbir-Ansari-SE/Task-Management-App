@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { AiFillCloseCircle,AiOutlineAreaChart,AiOutlineBarChart,AiOutlineLineChart } from "react-icons/ai";
+import {
+  AiFillCloseCircle,
+  AiOutlineAreaChart,
+  AiOutlineBarChart,
+  AiOutlineLineChart,
+} from "react-icons/ai";
 import { BsSunFill, BsMoonStarsFill } from "react-icons/bs";
 import { BiFilterAlt } from "react-icons/bi";
 import { MdOutlineTask } from "react-icons/md";
@@ -37,7 +42,12 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             ></path>
           </svg>
         </button>
-        <h1 className="text-[21px] font-Poppins mx -3 text-gray-600 dark:text-white">
+        <img
+                  src="https://i.ibb.co/wRbyg2z/53194041ab18fb9dfaaa6a6b40cf86ba.png"
+                  className="hidden lg:flex h-10 mr-1"
+                  alt=""
+                />
+        <h1 className="text-[21px] font-Poppins mx -3 text-gray-600 dark:text-white lg:hidden md:hidden">
           OrganizeMeNow
         </h1>
       </div>
@@ -52,6 +62,17 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
         />
         <div className="h-full px-3 py-10 lg:py-3 md:py-3 overflow-y-auto bg-gray-50 dark:bg-[#1C1D22]">
           <ul className="space-y-2 font-medium">
+            <Link
+            to="/">
+              <li className="flex items-center text-xl dark:text-white justify-center text-black">
+                <img
+                  src="https://i.ibb.co/wRbyg2z/53194041ab18fb9dfaaa6a6b40cf86ba.png"
+                  className="hidden lg:flex h-10 mr-1"
+                  alt=""
+                />
+                OrganizeMeNow
+              </li>
+            </Link>
             <li>
               <Link
                 to="/"
@@ -67,9 +88,10 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
                 to="/filters"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-               <BiFilterAlt className="text-2xl"/>
-                <span className="flex-1 ml-3 whitespace-nowrap">Filter Tasks</span>
-                
+                <BiFilterAlt className="text-2xl" />
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  Filter Tasks
+                </span>
               </Link>
             </li>
             <li>
@@ -77,7 +99,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
                 to="/lineChart"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <AiOutlineLineChart className="text-2xl"/>
+                <AiOutlineLineChart className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">
                   Line Chart
                 </span>
@@ -88,7 +110,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
                 to="/barChart"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <AiOutlineBarChart className="text-2xl"/>
+                <AiOutlineBarChart className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">Bar Chart</span>
               </Link>
             </li>
@@ -97,8 +119,10 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
                 to="/areaChart"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <AiOutlineAreaChart className="text-2xl"/>
-                <span className="flex-1 ml-3 whitespace-nowrap">Area Chart</span>
+                <AiOutlineAreaChart className="text-2xl" />
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  Area Chart
+                </span>
               </Link>
             </li>
             <li>
@@ -106,7 +130,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <LuUser className="text-2xl"/>
+                <LuUser className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">Users</span>
               </a>
             </li>
@@ -126,12 +150,12 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
               React.js, TypeScript and Next.js. My dedication to excellence
               drives me to create flawless, interactive UI.
             </p>
-            <button
+            <li
               className="text-sm text-white py-2 px-6 bg-blue-600 font-medium hover:text-blue-900 dark:text-blue-800 dark:hover:text-blue-300 dark:bg-white"
-              href="#"
+              href="https://www.google.com/"
             >
               Hire Me
-            </button>
+            </li>
           </div>
           <div className="flex fixed left-1/2 transform translate-x-[-50%] bottom-5 gap-3 items-center justify-center lg:pt-5 ">
             <BsSunFill className="text-2xl dark:text-white" />
