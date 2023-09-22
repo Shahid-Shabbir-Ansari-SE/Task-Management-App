@@ -37,7 +37,7 @@ const Filters = () => {
           Completed Tasks
         </div>
         <div className="">
-          <div className="m-3">
+          <div className="m-3 border-r">
             {completedTasks.map((task, index) => (
               <div className=" p-3 mx-4" key={index}>
                 <h1 className="flex text-base items-center text-left rounded text-black dark:border border-black bg-white my-2 -mx-2 p-0">
@@ -61,7 +61,7 @@ const Filters = () => {
           Pending Tasks
         </div>
         <div className="">
-          <div className="m-3">
+          <div className="m-3 bottom-r">
             {nonCompletedTasks.map((task, index) => (
               <div className=" p-3 mx-4" key={index}>
                 <h1 className="flex text-base items-center text-left rounded text-black dark:border border-black bg-white my-2 -mx-2 p-0">

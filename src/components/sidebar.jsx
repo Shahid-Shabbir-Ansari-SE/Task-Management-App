@@ -43,10 +43,10 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
           </svg>
         </button>
         <img
-                  src="https://i.ibb.co/wRbyg2z/53194041ab18fb9dfaaa6a6b40cf86ba.png"
-                  className="hidden lg:flex h-10 mr-1"
-                  alt=""
-                />
+          src="https://i.ibb.co/wRbyg2z/53194041ab18fb9dfaaa6a6b40cf86ba.png"
+          className="hidden lg:flex h-10 mr-1"
+          alt=""
+        />
         <h1 className="text-[21px] font-Poppins mx -3 text-gray-600 dark:text-white lg:hidden md:hidden">
           OrganizeMeNow
         </h1>
@@ -62,12 +62,11 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
         />
         <div className="h-full px-3 py-10 lg:py-3 md:py-3 overflow-y-auto bg-gray-50 dark:bg-[#1C1D22]">
           <ul className="space-y-2 font-medium">
-            <Link
-            to="/">
-              <li className="flex items-center text-xl dark:text-white justify-center text-black">
+            <Link to="/">
+              <li className="hidden lg:flex md:flex items-center text-xl dark:text-white justify-center text-black">
                 <img
                   src="https://i.ibb.co/wRbyg2z/53194041ab18fb9dfaaa6a6b40cf86ba.png"
-                  className="hidden lg:flex h-10 mr-1"
+                  className="h-10 mr-1"
                   alt=""
                 />
                 OrganizeMeNow
@@ -137,7 +136,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
           </ul>
           <div
             id="dropdown-cta"
-            className="p-3 mt-3 rounded-lg bg-blue-50 dark:bg-blue-900 fixed bottom-[70px] left-3 right-3 md:bottom-[60px]"
+            className="p-3 mt-3 rounded-lg bg-blue-50 dark:bg-blue-900 fixed bottom-[50px] left-3 right-3"
             role="alert"
           >
             <div className="flex items-center mb-2">
@@ -150,14 +149,15 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
               React.js, TypeScript and Next.js. My dedication to excellence
               drives me to create flawless, interactive UI.
             </p>
-            <li
-              className="text-sm text-white py-2 px-6 bg-blue-600 font-medium hover:text-blue-900 dark:text-blue-800 dark:hover:text-blue-300 dark:bg-white"
-              href="https://www.google.com/"
-            >
-              Hire Me
-            </li>
+            <button className="text-sm py-2 px-6 font-medium hover:text-blue-900 dark:text-blue-800 dark:hover:text-blue-300 dark:bg-white">
+              <a className="text-white dark:text-blue-600"
+              href="#"
+              >
+                Hire Me
+              </a>
+            </button>
           </div>
-          <div className="flex fixed left-1/2 transform translate-x-[-50%] bottom-5 gap-3 items-center justify-center lg:pt-5 ">
+          <div className="flex fixed left-1/2 transform translate-x-[-50%] bottom-3 gap-3 items-center justify-center lg:pt-5 ">
             <BsSunFill className="text-2xl dark:text-white" />
             <label className="relative inline-flex items-center cursor-pointer">
               <input
