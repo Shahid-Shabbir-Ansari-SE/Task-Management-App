@@ -1,7 +1,7 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 
-const LineChart = () => {
+const BineChart = () => {
   const option = {
     tooltip: {
       trigger: 'axis',
@@ -95,4 +95,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default BineChart;

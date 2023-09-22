@@ -6,7 +6,7 @@ import Sidebar from "./components/sidebar";
 import Home from "./pages/home";
 import Filters from "./pages/filters";
 import LineChart from "./pages/Charts/LineChart";
-import BarChart from "./pages/Charts/BarChart";
+import BarChart from "./pages/Charts/barChart";
 import AreaChart from "./pages/Charts/AreaChart";
 
 function App() {

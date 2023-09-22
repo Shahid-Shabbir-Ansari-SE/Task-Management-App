@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import NewTaskTemplate from "../components/newTaskTemplate";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BiCheckbox } from "react-icons/bi";
+import { BiSolidCheckboxChecked } from "react-icons/bi";
 import { FiEdit3 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -35,8 +37,10 @@ const home = () => {
   const [editState, setEditState] = useState(false);
   // Index of the task to be edited
   const [editIndex, setEditIndex] = useState(null);
-  //
-  const [checkbox, setCheckbox] = useState(false);
+  // Array of task checkbox states
+  const [taskCheckboxStates, setTaskCheckboxStates] = useState(
+    Array(taskList.length).fill(false)
+  );
 
   // *Function to toggle the new task form
   const toggleNewTask = () => {
@@ -191,10 +195,22 @@ const home = () => {
     setPriorityFilter(e.target.value); // Update the priorityFilter state
   };
 
-  const togglecheckbox = () => {
-    setCheckbox(!checkbox);
-    console.log(checkbox);
+  const toggleCheckbox = (index) => {
+    const newCheckboxStates = [...taskCheckboxStates];
+    newCheckboxStates[index] = !newCheckboxStates[index];
+    setTaskCheckboxStates(newCheckboxStates);
+    localStorage.setItem(
+      "taskCheckboxStates",
+      JSON.stringify(newCheckboxStates)
+    );
   };
+  useEffect(() => {
+    const storedTaskCheckboxStates =
+      localStorage.getItem("taskCheckboxStates");
+    if (storedTaskCheckboxStates) {
+      setTaskCheckboxStates(JSON.parse(storedTaskCheckboxStates));
+    }
+  }, []);
 
   return (
     <div className="lg:m-5 md:m-5 mx-3">
@@ -256,19 +272,22 @@ const home = () => {
                 {taskdescriptionList[index]}
               </div>
               <div>{taskPriorityList}</div>
-              <button className={`flex items-center mb-4 border p-3 my-5 rounded w-full border-black bg-white dark:border-0 ${checkbox ? "bg-black" : ""}`}>
-                <input
-                  onChange={togglecheckbox}
-                  id="default-checkbox"
-                  type="checkbox"
-                  value=""
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
-                />
+              <button
+                className={`flex items-center mb-4 border-2 py-1 px-2 my-5 rounded w-full border-black text-black cursor-pointer ${
+                  taskCheckboxStates[index] ? "bg-black dark:bg-white dark:border-white dark:text-white" : "text-black bg-transparent dark:border-white"
+                }`}
+                onClick={() => toggleCheckbox(index)}
+              >
+                {taskCheckboxStates[index] ? <BiSolidCheckboxChecked className="text-3xl text-white dark:text-black"/> : <BiCheckbox className="text-3xl text-black dark:text-white"/>}
                 <label
                   htmlFor="default-checkbox"
-                  className={`ml-2 text-sm font-medium text-black ${checkbox ? "text-white dark:text-white" : ""}`}
+                  className={`ml-2 text-sm font-medium text-black cursor-pointer ${
+                    taskCheckboxStates[index]
+                      ? "text-white dark:text-black "
+                      : "dark:text-white"
+                  }`}
                 >
-                  Default checkbox
+                  {taskCheckboxStates[index] ? "Completed" : "Mark as Completed"}
                 </label>
               </button>
               <div className="justify-end flex">
