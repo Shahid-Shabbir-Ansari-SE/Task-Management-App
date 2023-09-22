@@ -4,7 +4,7 @@
     <img src="https://i.ibb.co/3F5Qzv5/Screenshot-2023-09-22-205314.png" alt="drawing" width="500" />
 </div>
 
-This Task Management App is a complete CRUD (Create, Read, Update, Delete) application that allows users to manage their tasks efficiently. It includes a dashboard with various features, including task prioritization, completion status, and graphical representation of task data using bar and line graphs. The app is built using React, Tailwind CSS, Vite, React Icons, and ECharts.
+This Task Management App is a complete CRUD (Create, Read, Update, Delete) application that allows users to manage their tasks efficiently. It includes a dashboard with various features, including task prioritization, completion status, and graphs like Bar chart, Line chart and Area chart. The app is built using React, Tailwind CSS, Vite, React Icons, and ECharts.
 
 ## Features
 
