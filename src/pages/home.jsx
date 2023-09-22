@@ -13,14 +13,10 @@ const home = () => {
   const [taskName, setTaskName] = useState("");
   // Current task description
   const [taskdescription, setTaskDescription] = useState("");
-  // Current task priority
-  const [priorityFilter, setPriorityFilter] = useState("all");
   // Store new task name
   const [storedTaskName, setStoredTaskName] = useState("");
   // Store new task description
   const [storedTaskDescription, setStoredTaskDescription] = useState("");
-  // Store new task priority
-  const [storedPriorityFilter, setStoredPriorityFilter] = useState("");
   // Array of tasks
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("taskList")) || []
@@ -30,9 +26,6 @@ const home = () => {
     JSON.parse(localStorage.getItem("taskDescriptionList")) || []
   );
   // Array of task priorities
-  const [taskPriorityList, setTaskPriorityList] = useState(
-    JSON.parse(localStorage.getItem("taskPriorityList")) || []
-  );
   // Toggle edit mode for tasks
   const [editState, setEditState] = useState(false);
   // Index of the task to be edited
@@ -41,6 +34,7 @@ const home = () => {
   const [taskCheckboxStates, setTaskCheckboxStates] = useState(
     Array(taskList.length).fill(false)
   );
+  const [selectedPriority, setSelectedPriority] = useState("");
 
   // *Function to toggle the new task form
   const toggleNewTask = () => {
@@ -62,35 +56,30 @@ const home = () => {
 
   // Todo: Function to handle the submission of a new task
   const handleSubmitTask = () => {
-    if (storedTaskName === "" || storedTaskDescription === "") {
-      alert("Please fill the form");
+    if (
+      storedTaskName === "" ||
+      storedTaskDescription === "" ||
+      selectedPriority === ""
+    ) {
+      alert("Please fill the form and select a priority");
     } else {
-      setTaskName(storedTaskName);
-      setTaskDescription(storedTaskDescription);
-      setPriorityFilter(storedPriorityFilter);
+      const newTask = {
+        name: storedTaskName,
+        description: storedTaskDescription,
+        priority: selectedPriority, // Set the selected priority
+      };
 
-      // Update the state with the new task and description
-      setTaskList([...taskList, storedTaskName]);
-      setTaskDescriptionList([...taskdescriptionList, storedTaskDescription]);
-      setTaskPriorityList([...taskPriorityList, storedPriorityFilter]);
+      // Update the state with the new task
+      setTaskList([...taskList, newTask]);
 
-      // Update localStorage with the new task and description
-      localStorage.setItem(
-        "taskList",
-        JSON.stringify([...taskList, storedTaskName])
-      );
-      localStorage.setItem(
-        "taskDescriptionList",
-        JSON.stringify([...taskdescriptionList, storedTaskDescription])
-      );
-      localStorage.setItem(
-        "taskPriorityList",
-        JSON.stringify([...taskPriorityList, storedPriorityFilter])
-      );
+      // Update localStorage with the new task
+      localStorage.setItem("taskList", JSON.stringify([...taskList, newTask]));
 
+      // Clear the input fields and selected priority
       setStoredTaskName("");
       setStoredTaskDescription("");
-      setStoredPriorityFilter("All");
+      setSelectedPriority("");
+
       toggleNewTask();
     }
   };
@@ -108,13 +97,6 @@ const home = () => {
       setTaskDescriptionList(
         JSON.parse(localStorage.getItem("taskDescriptionList"))
       );
-    }
-  }, []);
-
-  // *Load task priorities from local storage when the component mounts
-  useEffect(() => {
-    if (localStorage.getItem("taskPriorityList")) {
-      setTaskPriorityList(JSON.parse(localStorage.getItem("taskPriorityList")));
     }
   }, []);
 
@@ -150,55 +132,42 @@ const home = () => {
 
   // *Function to handle updating a specific task
   // *Function to handle updating a specific task
-const handleUpdateTask = (index) => {
-  setEditIndex(index); // Set the index of the task to be edited
-  if (storedTaskName === "" && storedTaskDescription === "") {
-    alert("Please Edit Something");
-  } else {
-    const newTaskList = [...taskList];
-    if (storedTaskName === "") {
-      setStoredTaskName(taskList[index]);
+  const handleUpdateTask = (index) => {
+    if (
+      storedTaskName === "" &&
+      storedTaskDescription === "" &&
+      selectedPriority === ""
+    ) {
+      alert("Please Edit Something");
     } else {
-      newTaskList[index] = storedTaskName;
+      const updatedTaskList = [...taskList];
+      const updatedTask = updatedTaskList[index];
+
+      // Update the task object if the name, description, or priority are not empty
+      if (storedTaskName !== "") {
+        updatedTask.name = storedTaskName;
+      }
+      if (storedTaskDescription !== "") {
+        updatedTask.description = storedTaskDescription;
+      }
+      if (selectedPriority !== "") {
+        updatedTask.priority = selectedPriority;
+      }
+
+      // Update the task list with the updated task
+      updatedTaskList[index] = updatedTask;
+
+      // Update the state and local storage
+      setTaskList(updatedTaskList);
+      localStorage.setItem("taskList", JSON.stringify(updatedTaskList));
+
+      // Clear the stored values and toggle the edit mode
+      setStoredTaskName("");
+      setStoredTaskDescription("");
+      setSelectedPriority("");
+      setEditState(false);
+      toggleNewTask(!newTask);
     }
-    const newTaskDescriptionList = [...taskdescriptionList];
-    if (storedTaskDescription === "") {
-      setStoredTaskDescription(taskdescriptionList[index]);
-    } else {
-      newTaskDescriptionList[index] = storedTaskDescription;
-    }
-    const newTaskPriorityList = [...taskPriorityList];
-    if (storedPriorityFilter === "") {
-      setStoredPriorityFilter(taskPriorityList[index]);
-    } else {
-      newTaskPriorityList[index] = storedPriorityFilter;
-    }
-    setTaskList(newTaskList);
-    setTaskDescriptionList(newTaskDescriptionList);
-    setTaskPriorityList(newTaskPriorityList);
-
-    // This is where you update the completion state for the specific task
-    const newTaskCompletionStates = [...taskCheckboxStates];
-    newTaskCompletionStates[index] = taskCheckboxStates[index];
-    setTaskCheckboxStates(newTaskCompletionStates);
-
-    localStorage.setItem("taskList", JSON.stringify(newTaskList));
-    localStorage.setItem("taskDescriptionList", JSON.stringify(newTaskDescriptionList));
-    localStorage.setItem("taskPriorityList", JSON.stringify(newTaskPriorityList));
-
-    // Update the completion state in local storage
-    localStorage.setItem("taskCheckboxStates", JSON.stringify(newTaskCompletionStates));
-
-    setEditState(!editState); // Toggle the edit mode
-    setStoredTaskName("");
-    setStoredTaskDescription("");
-    toggleNewTask();
-  }
-};
-
-
-  const handlePriorityFilter = (e) => {
-    setPriorityFilter(e.target.value); // Update the priorityFilter state
   };
 
   const toggleCheckbox = (index) => {
@@ -216,6 +185,12 @@ const handleUpdateTask = (index) => {
       setTaskCheckboxStates(JSON.parse(storedTaskCheckboxStates));
     }
   }, []);
+  // Inside your home component
+  const handlePriorityChange = (selectedPriority) => {
+    // You can now use the selectedPriority value as needed in your home component.
+    // For example, you can set it in a state variable to display it.
+    setSelectedPriority(selectedPriority);
+  };
 
   return (
     <div className="lg:m-5 md:m-5 mx-3">
@@ -231,7 +206,8 @@ const handleUpdateTask = (index) => {
               editState={editState}
               handleUpdateTask={handleUpdateTask}
               index={editIndex}
-              priorityFilter={priorityFilter}
+              selectedPriority={selectedPriority} // Pass the selected priority as a prop
+              handlePriorityChange={handlePriorityChange} // Pass the callback function as a prop
             />
           )}
         </div>
@@ -271,13 +247,13 @@ const handleUpdateTask = (index) => {
                 Task n.o {index + 1}
               </h1>
               <div className="task-name dark:text-white text-3xl text-black underline">
-                {task}
+                {task.name} {/* Render the task name */}
               </div>
               <div className="task-description dark:text-white py-2 dark:font-light">
-                {taskdescriptionList[index]}
+                {task.description} {/* Render the task description */}
               </div>
               <div>
-                <p>{taskPriorityList[index]}</p>
+                <div>{task.priority}</div>
               </div>
               <button
                 className={`flex items-center mb-4 border-2 py-1 px-2 my-5 rounded w-full border-black text-black cursor-pointer ${
