@@ -67,7 +67,7 @@ const Filters = () => {
           Pending Tasks
         </div>
         <div className="">
-          <div className="m-3 lg:border-r lg:border-0 border-b">
+          <div className="m-3">
             {nonCompletedTasks.map((task, index) => (
               <div className=" p-3 mx-4" key={index}>
                 <h1 className="flex text-base items-center text-left rounded text-black dark:border border-black bg-white my-2 -mx-2 p-0">
@@ -85,12 +85,12 @@ const Filters = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-[33%] justify-center h-full grid">
+      <div className="lg:w-[33%] justify-center h-full lg:border-0 border-t mx-4">
         <div className="text-center text-lg dark:text-white my-5 lg:my-0">
           Priority Tasks
         </div>
-        <div className="">
-          <div className="m-3 flex gap-3">
+        <div className="lg:border-l mx-4">
+          <div className="m-3 flex gap-3 justify-center">
           <button
               type="button"
               className={`${

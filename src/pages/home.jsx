@@ -212,7 +212,7 @@ const home = () => {
           )}
         </div>
         <div className="lg:flex place-items-center">
-          <h1 className="text-xl lg:text-3xl text-black dark:text-white text-center lg:text-left md:text-center w-full">
+          <h1 className="text-xl pt-5 lg:p-0 md:pt-0 lg:text-3xl text-black dark:text-white text-center lg:text-left md:text-center w-full">
             Welcome Back Again !
           </h1>
           <div className="flex gap-2 lg:justify-end lg:m-0 my-2 justify-center w-full">
@@ -246,14 +246,16 @@ const home = () => {
               <h1 className="text-base text-left rounded text-black dark:border border-black bg-white w-fit dark:px-3 my-2">
                 Task n.o {index + 1}
               </h1>
-              <div className="task-name dark:text-white text-3xl text-black underline">
+              <div className="dark:text-white text-3xl text-black underline">
                 {task.name} {/* Render the task name */}
               </div>
-              <div className="task-description dark:text-white py-2 dark:font-light">
+              <div className="dark:text-white py-2 dark:text-light">
                 {task.description} {/* Render the task description */}
               </div>
               <div>
-                <div>{task.priority}</div>
+                <div className="lg:w-1/3 md:w-1/3 w-full flex rounded p-2 dark:text-light border-2 dark:bg-white dark:text-black">
+                  Priority: <div className="text-blue-800 font-semibold ml-2">{task.priority}</div>
+                </div>
               </div>
               <button
                 className={`flex items-center mb-4 border-2 py-1 px-2 my-5 rounded w-full border-black text-black cursor-pointer ${
