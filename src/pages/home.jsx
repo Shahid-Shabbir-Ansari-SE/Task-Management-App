@@ -35,6 +35,8 @@ const home = () => {
   const [editState, setEditState] = useState(false);
   // Index of the task to be edited
   const [editIndex, setEditIndex] = useState(null);
+  //
+  const [checkbox, setCheckbox] = useState(false);
 
   // *Function to toggle the new task form
   const toggleNewTask = () => {
@@ -108,9 +110,7 @@ const home = () => {
   // *Load task priorities from local storage when the component mounts
   useEffect(() => {
     if (localStorage.getItem("taskPriorityList")) {
-      setTaskPriorityList(
-        JSON.parse(localStorage.getItem("taskPriorityList"))
-      );
+      setTaskPriorityList(JSON.parse(localStorage.getItem("taskPriorityList")));
     }
   }, []);
 
@@ -189,7 +189,12 @@ const home = () => {
 
   const handlePriorityFilter = (e) => {
     setPriorityFilter(e.target.value); // Update the priorityFilter state
-  };  
+  };
+
+  const togglecheckbox = () => {
+    setCheckbox(!checkbox);
+    console.log(checkbox);
+  };
 
   return (
     <div className="lg:m-5 md:m-5 mx-3">
@@ -205,7 +210,8 @@ const home = () => {
               editState={editState}
               handleUpdateTask={handleUpdateTask}
               index={editIndex}
-              priorityFilter={priorityFilter}            />
+              priorityFilter={priorityFilter}
+            />
           )}
         </div>
         <div className="lg:flex place-items-center">
@@ -217,7 +223,7 @@ const home = () => {
               type="button"
               className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none
             focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 text-center inline-flex items-center
-            dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white"
+            dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white dark:hover:text-white"
               onClick={toggleNewTask}
             >
               <AiOutlinePlus className="mr-2" />
@@ -226,7 +232,7 @@ const home = () => {
             <button
               className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none
             focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 text-center inline-flex items-center
-            dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white"
+            dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 dark:text-black dark:bg-white dark:hover:text-white"
               onClick={handleDeleteAllTasks}
             >
               <RiDeleteBin6Line className="mr-2" />
@@ -249,9 +255,22 @@ const home = () => {
               <div className="task-description dark:text-white py-2 dark:font-light">
                 {taskdescriptionList[index]}
               </div>
-              <div>
-                {taskPriorityList}
-              </div>
+              <div>{taskPriorityList}</div>
+              <button className={`flex items-center mb-4 border p-3 my-5 rounded w-full border-black bg-white dark:border-0 ${checkbox ? "bg-black" : ""}`}>
+                <input
+                  onChange={togglecheckbox}
+                  id="default-checkbox"
+                  type="checkbox"
+                  value=""
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
+                />
+                <label
+                  htmlFor="default-checkbox"
+                  className={`ml-2 text-sm font-medium text-black ${checkbox ? "text-white dark:text-white" : ""}`}
+                >
+                  Default checkbox
+                </label>
+              </button>
               <div className="justify-end flex">
                 <button
                   onClick={() => handleEditTask(index)}

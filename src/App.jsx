@@ -4,8 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./components/sidebar";
 import Home from "./pages/home";
-import Roadmap from "./pages/roadmap";
-import Filters from "./pages/Filters";
+import Filters from "./pages/filters";
 import LineChart from "./pages/Charts/LineChart";
 import BarChart from "./pages/Charts/BarChart";
 import AreaChart from "./pages/Charts/AreaChart";
@@ -31,7 +30,6 @@ function App() {
             <div className="lg:w-[calc(100vw-255px)] md:w-[calc(100vw-255px)] sm:w-full min-h-screen">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/roadmap" element={<Roadmap />} />
                 <Route path="/filters" element={<Filters />} />
                 <Route path="/lineChart" element={<LineChart />} />
                 <Route path="/barChart" element={<BarChart />} />
