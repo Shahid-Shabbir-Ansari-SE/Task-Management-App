@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./components/sidebar";
 import Home from "./pages/home";
-import Filters from "./pages/filters";
+import Filters from "./pages/Filters";
 import LineChart from "./pages/Charts/LineChart";
 import BarChart from "./pages/Charts/barChart";
 import AreaChart from "./pages/Charts/AreaChart";
@@ -22,7 +22,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className={darkMode ? "dark" : ""}>
-        <div className="w-full dark:bg-[#222327] font-Poppins">
+        <div className="w-full dark:bg-[#222327] font-Poppins overflow-x-hidden">
           <div className="lg:flex md:flex sm:grid">
             <div className="lg:w-[255px] lg:h-screen lg:shadow-none md:w-[255px] md:shadow-none w-full sticky top-0 bg-white shadow-md dark:bg-[#1C1D22] dark:shadow-sm dark:shadow-gray-500 z-10">
               <Sidebar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />

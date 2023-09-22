@@ -149,47 +149,53 @@ const home = () => {
   };
 
   // *Function to handle updating a specific task
-  const handleUpdateTask = (index) => {
-    setEditIndex(index); // Set the index of the task to be edited
-    if (storedTaskName === "" && storedTaskDescription === "") {
-      alert("Please Edit Something");
+  // *Function to handle updating a specific task
+const handleUpdateTask = (index) => {
+  setEditIndex(index); // Set the index of the task to be edited
+  if (storedTaskName === "" && storedTaskDescription === "") {
+    alert("Please Edit Something");
+  } else {
+    const newTaskList = [...taskList];
+    if (storedTaskName === "") {
+      setStoredTaskName(taskList[index]);
     } else {
-      const newTaskList = [...taskList];
-      if (storedTaskName === "") {
-        setStoredTaskName(taskList[index]);
-      } else {
-        newTaskList[index] = storedTaskName;
-      }
-      const newTaskDescriptionList = [...taskdescriptionList];
-      if (storedTaskDescription === "") {
-        setStoredTaskDescription(taskdescriptionList[index]);
-      } else {
-        newTaskDescriptionList[index] = storedTaskDescription;
-      }
-      const newTaskPriorityList = [...taskPriorityList];
-      if (storedPriorityFilter === "") {
-        setStoredPriorityFilter(taskPriorityList[index]);
-      } else {
-        newTaskPriorityList[index] = storedPriorityFilter;
-      }
-      setTaskList(newTaskList);
-      setTaskDescriptionList(newTaskDescriptionList);
-      setTaskPriorityList(newTaskPriorityList);
-      localStorage.setItem("taskList", JSON.stringify(newTaskList));
-      localStorage.setItem(
-        "taskDescriptionList",
-        JSON.stringify(newTaskDescriptionList)
-      );
-      localStorage.setItem(
-        "taskPriorityList",
-        JSON.stringify(newTaskPriorityList)
-      );
-      setEditState(!editState); // Toggle the edit mode
-      setStoredTaskName("");
-      setStoredTaskDescription("");
-      toggleNewTask();
+      newTaskList[index] = storedTaskName;
     }
-  };
+    const newTaskDescriptionList = [...taskdescriptionList];
+    if (storedTaskDescription === "") {
+      setStoredTaskDescription(taskdescriptionList[index]);
+    } else {
+      newTaskDescriptionList[index] = storedTaskDescription;
+    }
+    const newTaskPriorityList = [...taskPriorityList];
+    if (storedPriorityFilter === "") {
+      setStoredPriorityFilter(taskPriorityList[index]);
+    } else {
+      newTaskPriorityList[index] = storedPriorityFilter;
+    }
+    setTaskList(newTaskList);
+    setTaskDescriptionList(newTaskDescriptionList);
+    setTaskPriorityList(newTaskPriorityList);
+
+    // This is where you update the completion state for the specific task
+    const newTaskCompletionStates = [...taskCheckboxStates];
+    newTaskCompletionStates[index] = taskCheckboxStates[index];
+    setTaskCheckboxStates(newTaskCompletionStates);
+
+    localStorage.setItem("taskList", JSON.stringify(newTaskList));
+    localStorage.setItem("taskDescriptionList", JSON.stringify(newTaskDescriptionList));
+    localStorage.setItem("taskPriorityList", JSON.stringify(newTaskPriorityList));
+
+    // Update the completion state in local storage
+    localStorage.setItem("taskCheckboxStates", JSON.stringify(newTaskCompletionStates));
+
+    setEditState(!editState); // Toggle the edit mode
+    setStoredTaskName("");
+    setStoredTaskDescription("");
+    toggleNewTask();
+  }
+};
+
 
   const handlePriorityFilter = (e) => {
     setPriorityFilter(e.target.value); // Update the priorityFilter state
@@ -205,8 +211,7 @@ const home = () => {
     );
   };
   useEffect(() => {
-    const storedTaskCheckboxStates =
-      localStorage.getItem("taskCheckboxStates");
+    const storedTaskCheckboxStates = localStorage.getItem("taskCheckboxStates");
     if (storedTaskCheckboxStates) {
       setTaskCheckboxStates(JSON.parse(storedTaskCheckboxStates));
     }
@@ -271,14 +276,22 @@ const home = () => {
               <div className="task-description dark:text-white py-2 dark:font-light">
                 {taskdescriptionList[index]}
               </div>
-              <div>{taskPriorityList}</div>
+              <div>
+                <p>{taskPriorityList[index]}</p>
+              </div>
               <button
                 className={`flex items-center mb-4 border-2 py-1 px-2 my-5 rounded w-full border-black text-black cursor-pointer ${
-                  taskCheckboxStates[index] ? "bg-black dark:bg-white dark:border-white dark:text-white" : "text-black bg-transparent dark:border-white"
+                  taskCheckboxStates[index]
+                    ? "bg-black dark:bg-white dark:border-white dark:text-white"
+                    : "text-black bg-transparent dark:border-white"
                 }`}
                 onClick={() => toggleCheckbox(index)}
               >
-                {taskCheckboxStates[index] ? <BiSolidCheckboxChecked className="text-3xl text-white dark:text-black"/> : <BiCheckbox className="text-3xl text-black dark:text-white"/>}
+                {taskCheckboxStates[index] ? (
+                  <BiSolidCheckboxChecked className="text-3xl text-white dark:text-black" />
+                ) : (
+                  <BiCheckbox className="text-3xl text-black dark:text-white" />
+                )}
                 <label
                   htmlFor="default-checkbox"
                   className={`ml-2 text-sm font-medium text-black cursor-pointer ${
@@ -287,7 +300,9 @@ const home = () => {
                       : "dark:text-white"
                   }`}
                 >
-                  {taskCheckboxStates[index] ? "Completed" : "Mark as Completed"}
+                  {taskCheckboxStates[index]
+                    ? "Completed"
+                    : "Mark as Completed"}
                 </label>
               </button>
               <div className="justify-end flex">
