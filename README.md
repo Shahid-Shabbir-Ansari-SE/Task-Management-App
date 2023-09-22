@@ -22,10 +22,11 @@ This Task Management App is a complete CRUD (Create, Read, Update, Delete) appli
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [ECharts](https://echarts.apache.org/)
 <div style="display: flex;">
-    <img src="https://camo.githubusercontent.com/48d099290b4cb2d7937bcd96e8497cf1845b54a810a6432c70cf944b60b40c77/68747470733a2f2f7261776769742e636f6d2f676f72616e67616a69632f72656163742d69636f6e732f6d61737465722f72656163742d69636f6e732e737667" alt="drawing" width="100" />
-    <img src="https://www.svgrepo.com/show/374167/vite.svg" alt="drawing" width="100" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png" alt="drawing" width="100" />
-    <img src="https://i.ibb.co/g7120hs/channels4-profile-removebg-preview.png" alt="drawing" width="100" />
+    <img src="https://camo.githubusercontent.com/48d099290b4cb2d7937bcd96e8497cf1845b54a810a6432c70cf944b60b40c77/68747470733a2f2f7261776769742e636f6d2f676f72616e67616a69632f72656163742d69636f6e732f6d61737465722f72656163742d69636f6e732e737667" width="100" />
+    <img src="https://www.svgrepo.com/show/374167/vite.svg" width="100" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png" width="100" />
+    <img src="https://i.ibb.co/g7120hs/channels4-profile-removebg-preview.png" width="100" />
+    <img src="https://echarts.apache.org/en/images/logo.png" width="100" />
 </div>
 ## Installation
 
