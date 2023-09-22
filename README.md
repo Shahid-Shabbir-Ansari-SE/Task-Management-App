@@ -46,9 +46,9 @@ npm run dev
 5. Open the app:
 http://localhost:3000
 
-##License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-##Acknowledgments
+## Acknowledgments
 Thanks to the open-source community for providing the tools and libraries used in this project.
 Special thanks to ECharts for the beautiful charts and graphs.
