@@ -26,7 +26,7 @@ This Task Management App is a complete CRUD (Create, Read, Update, Delete) appli
     <img src="https://www.svgrepo.com/show/374167/vite.svg" width="100" />
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png" width="100" />
     <img src="https://i.ibb.co/g7120hs/channels4-profile-removebg-preview.png" width="100" />
-    <img src="https://echarts.apache.org/en/images/logo.png" width="100" />
+    <img src="https://cdn.dribbble.com/users/984227/screenshots/4647279/media/29889e65127ebec20d89b8a847368292.png?resize=400x300&vertical=center" width="100" />
 </div>
 ## Installation
 
