@@ -11,7 +11,7 @@ This Task Management App is a complete CRUD (Create, Read, Update, Delete) appli
 - Create, Read, Update, and Delete tasks.
 - Prioritize tasks as Low, Medium, or High.
 - Mark tasks as completed or pending.
-- Visualize task data using bar and line graphs.
+- Visualize data using bar,area and line graphs.
 - User-friendly interface with dark mode support.
 
 ## Technologies Used
@@ -32,4 +32,23 @@ This Task Management App is a complete CRUD (Create, Read, Update, Delete) appli
 ## Installation
 
 1. Clone the repository:
-   git clone https://github.com/your-username/your-task-app.git
+git clone https://github.com/your-username/your-task-app.git
+
+2. Navigate to the project directory:
+cd task-management-app-main
+
+3. Install the dependencies:
+npm install
+
+4. Run the app:
+npm run dev
+
+5. Open the app:
+http://localhost:3000
+
+##License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+##Acknowledgments
+Thanks to the open-source community for providing the tools and libraries used in this project.
+Special thanks to ECharts for the beautiful charts and graphs.
