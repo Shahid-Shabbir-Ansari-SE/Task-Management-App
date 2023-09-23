@@ -7,36 +7,24 @@ import { FiEdit3 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const home = () => {
-  // Toggle new task form
   const [newTask, setNewTask] = useState(false);
-  // Current task name
   const [taskName, setTaskName] = useState("");
-  // Current task description
   const [taskdescription, setTaskDescription] = useState("");
-  // Store new task name
   const [storedTaskName, setStoredTaskName] = useState("");
-  // Store new task description
   const [storedTaskDescription, setStoredTaskDescription] = useState("");
-  // Array of tasks
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("taskList")) || []
   );
-  // Array of task descriptions
   const [taskdescriptionList, setTaskDescriptionList] = useState(
     JSON.parse(localStorage.getItem("taskDescriptionList")) || []
   );
-  // Array of task priorities
-  // Toggle edit mode for tasks
   const [editState, setEditState] = useState(false);
-  // Index of the task to be edited
   const [editIndex, setEditIndex] = useState(null);
-  // Array of task checkbox states
   const [taskCheckboxStates, setTaskCheckboxStates] = useState(
     Array(taskList.length).fill(false)
   );
   const [selectedPriority, setSelectedPriority] = useState("");
 
-  // *Function to toggle the new task form
   const toggleNewTask = () => {
     setNewTask(!newTask);
     if (newTask) {
@@ -44,17 +32,14 @@ const home = () => {
     }
   };
 
-  // *Function to handle changes in the new task name input field
   const handleTaskNameChange = (e) => {
     setStoredTaskName(e.target.value);
   };
 
-  // *Function to handle changes in the new task description input field
   const handleTaskDescriptionChange = (e) => {
     setStoredTaskDescription(e.target.value);
   };
 
-  // Todo: Function to handle the submission of a new task
   const handleSubmitTask = () => {
     if (
       storedTaskName === "" ||
@@ -66,16 +51,11 @@ const home = () => {
       const newTask = {
         name: storedTaskName,
         description: storedTaskDescription,
-        priority: selectedPriority, // Set the selected priority
+        priority: selectedPriority,
       };
 
-      // Update the state with the new task
       setTaskList([...taskList, newTask]);
-
-      // Update localStorage with the new task
       localStorage.setItem("taskList", JSON.stringify([...taskList, newTask]));
-
-      // Clear the input fields and selected priority
       setStoredTaskName("");
       setStoredTaskDescription("");
       setSelectedPriority("");
@@ -84,14 +64,12 @@ const home = () => {
     }
   };
 
-  // *Load tasks from local storage when the component mounts
   useEffect(() => {
     if (localStorage.getItem("taskList")) {
       setTaskList(JSON.parse(localStorage.getItem("taskList")));
     }
   }, []);
 
-  // *Load task descriptions from local storage when the component mounts
   useEffect(() => {
     if (localStorage.getItem("taskDescriptionList")) {
       setTaskDescriptionList(
@@ -100,14 +78,12 @@ const home = () => {
     }
   }, []);
 
-  // !Function to handle deleting all tasks
   const handleDeleteAllTasks = () => {
-    localStorage.clear(); // Clear all data from local storage
-    setTaskList([]); // Clear the task list state
-    setTaskDescriptionList([]); // Clear the task description list state
+    localStorage.clear();
+    setTaskList([]);
+    setTaskDescriptionList([]);
   };
 
-  // !Function to handle deleting a specific task
   const handleDeleteTask = (index) => {
     const newTaskList = [...taskList];
     newTaskList.splice(index, 1);
@@ -123,15 +99,12 @@ const home = () => {
     );
   };
 
-  // *Function to handle editing a specific task
   const handleEditTask = (index) => {
-    setEditState(!editState); // Toggle the edit mode
-    setEditIndex(index); // Set the index of the task to be edited
-    toggleNewTask(); // Close the new task form
+    setEditState(!editState);
+    setEditIndex(index);
+    toggleNewTask();
   };
 
-  // *Function to handle updating a specific task
-  // *Function to handle updating a specific task
   const handleUpdateTask = (index) => {
     if (
       storedTaskName === "" &&
@@ -143,7 +116,6 @@ const home = () => {
       const updatedTaskList = [...taskList];
       const updatedTask = updatedTaskList[index];
 
-      // Update the task object if the name, description, or priority are not empty
       if (storedTaskName !== "") {
         updatedTask.name = storedTaskName;
       }
@@ -154,14 +126,11 @@ const home = () => {
         updatedTask.priority = selectedPriority;
       }
 
-      // Update the task list with the updated task
       updatedTaskList[index] = updatedTask;
 
-      // Update the state and local storage
       setTaskList(updatedTaskList);
       localStorage.setItem("taskList", JSON.stringify(updatedTaskList));
 
-      // Clear the stored values and toggle the edit mode
       setStoredTaskName("");
       setStoredTaskDescription("");
       setSelectedPriority("");
@@ -179,16 +148,15 @@ const home = () => {
       JSON.stringify(newCheckboxStates)
     );
   };
+
   useEffect(() => {
     const storedTaskCheckboxStates = localStorage.getItem("taskCheckboxStates");
     if (storedTaskCheckboxStates) {
       setTaskCheckboxStates(JSON.parse(storedTaskCheckboxStates));
     }
   }, []);
-  // Inside your home component
+
   const handlePriorityChange = (selectedPriority) => {
-    // You can now use the selectedPriority value as needed in your home component.
-    // For example, you can set it in a state variable to display it.
     setSelectedPriority(selectedPriority);
   };
 
@@ -206,8 +174,8 @@ const home = () => {
               editState={editState}
               handleUpdateTask={handleUpdateTask}
               index={editIndex}
-              selectedPriority={selectedPriority} // Pass the selected priority as a prop
-              handlePriorityChange={handlePriorityChange} // Pass the callback function as a prop
+              selectedPriority={selectedPriority}
+              handlePriorityChange={handlePriorityChange}
             />
           )}
         </div>
@@ -247,10 +215,10 @@ const home = () => {
                 Task n.o {index + 1}
               </h1>
               <div className="dark:text-white text-3xl text-black underline">
-                {task.name} {/* Render the task name */}
+                {task.name}
               </div>
               <div className="dark:text-white py-2 dark:text-light">
-                {task.description} {/* Render the task description */}
+                {task.description}
               </div>
               <div>
                 <div className="lg:w-1/3 md:w-1/3 w-full flex rounded p-2 dark:text-light border-2 dark:bg-white dark:text-black">

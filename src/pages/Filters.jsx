@@ -4,10 +4,6 @@ import { BsDot } from "react-icons/bs";
 const Filters = () => {
   const [taskListFromLocalStorage, setTaskListFromLocalStorage] = useState([]);
   const [taskCompletionStates, setTaskCompletionStates] = useState([]);
-  const [
-    taskdescriptionListFromLocalStorage,
-    setTaskDescriptionListFromLocalStorage,
-  ] = useState([]);
   const [selectedPriority, setSelectedPriority] = useState(null);
 
   useEffect(() => {
@@ -19,7 +15,6 @@ const Filters = () => {
     setTaskCompletionStates(storedTaskCompletionStates);
   }, []);
 
-  // Separate completed and non-completed tasks
   const completedTasks = taskListFromLocalStorage.filter((task, index) => {
     return taskCompletionStates[index];
   });
@@ -28,7 +23,6 @@ const Filters = () => {
     return !taskCompletionStates[index];
   });
 
-  // Filter tasks based on selected priority
   const filteredTasks = taskListFromLocalStorage.filter(
     (task) => selectedPriority === null || task.priority === selectedPriority
   );

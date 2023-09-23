@@ -10,8 +10,10 @@ import { BsSunFill, BsMoonStarsFill } from "react-icons/bs";
 import { BiFilterAlt } from "react-icons/bi";
 import { MdOutlineTask } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
+
 const sidebar = ({ darkMode, toggleDarkMode }) => {
   const [showSidebar, setShowSidebar] = useState(false);
+
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
@@ -19,6 +21,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
   const sidebarstyle = {
     transform: showSidebar ? "translateX(0)" : "",
   };
+
   return (
     <div>
       <div className="flex items-center">
@@ -75,17 +78,16 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             <li>
               <Link
                 to="/"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <MdOutlineTask className="text-2xl" />
                 <span className="ml-3">All Tasks</span>
               </Link>
             </li>
-
             <li>
               <Link
                 to="/filters"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <BiFilterAlt className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">
@@ -96,7 +98,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             <li>
               <Link
                 to="/lineChart"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <AiOutlineLineChart className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">
@@ -107,7 +109,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             <li>
               <Link
                 to="/barChart"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <AiOutlineBarChart className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">Bar Chart</span>
@@ -116,7 +118,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             <li>
               <Link
                 to="/areaChart"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <AiOutlineAreaChart className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">
@@ -127,7 +129,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover-bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <LuUser className="text-2xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">About Me</span>
@@ -149,15 +151,13 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
               React.js, TypeScript and Next.js. My dedication to excellence
               drives me to create flawless, interactive UI.
             </p>
-            <button className="text-sm py-2 px-6 font-medium hover:text-blue-900 dark:text-blue-800 dark:hover:text-blue-300 dark:bg-white">
-              <a className="text-white dark:text-blue-600"
-              href="#"
-              >
+            <button className="text-sm py-2 px-6 font-medium hover-text-blue-900 dark:text-blue-800 dark:hover-text-blue-300 dark:bg-white">
+              <a className="text-white dark-text-blue-600" href="#">
                 Hire Me
               </a>
             </button>
           </div>
-          <div className="flex fixed left-1/2 transform translate-x-[-50%] bottom-3 gap-3 items-center justify-center lg:pt-5 ">
+          <div className="flex fixed left-1/2 transform translate-x-[-50%] bottom-3 gap-3 items-center justify-center lg:pt-5">
             <BsSunFill className="text-2xl dark:text-white" />
             <label className="relative inline-flex items-center cursor-pointer">
               <input
@@ -166,7 +166,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
                 checked={darkMode}
                 className="sr-only peer"
               />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after-content-[''] after:absolute after-top-[2px] after-left-[2px] after-bg-white after-border-gray-300 after-border after-rounded-full after-h-5 after-w-5 after-transition-all dark-border-gray-600 peer-checked:bg-blue-600"></div>
               <BsMoonStarsFill className="ml-3 text-xl dark:text-white" />
             </label>
           </div>
