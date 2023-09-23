@@ -32,7 +32,7 @@ This Task Management App is a complete CRUD (Create, Read, Update, Delete) appli
 ## Installation
 
 1. Clone the repository:
-git clone [https://github.com/your-username/your-task-app.git](https://github.com/Shahid-Shabbir-Ansari-SE/Task-Management-App)
+git clone [(https://github.com/Shahid-Shabbir-Ansari-SE/Task-Management-App)]
 
 2. Navigate to the project directory:
 cd task-management-app-main
