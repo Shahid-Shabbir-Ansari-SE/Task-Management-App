@@ -152,7 +152,7 @@ const sidebar = ({ darkMode, toggleDarkMode }) => {
               drives me to create flawless, interactive UI.
             </p>
             <button className="text-sm py-2 px-6 font-medium hover-text-blue-900 dark:text-blue-800 dark:hover-text-blue-300 dark:bg-white">
-              <a className="text-white dark-text-blue-600" href="#">
+              <a className="text-white dark-text-blue-600" href="https://www.upwork.com/freelancers/~0182ed81f3b2a01e9a">
                 Hire Me
               </a>
             </button>
